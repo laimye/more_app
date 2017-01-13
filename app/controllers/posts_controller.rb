@@ -12,8 +12,10 @@ class PostsController < ApplicationController
 
 		def show
 			@comment = @post.comments.new
+			@comment.post = @post
 			@comments = @post.comments
-
+			p "*" * 50
+			p @comments.first.errors.messages
 		end
 
 		def edit

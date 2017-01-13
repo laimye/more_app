@@ -1,0 +1,9 @@
+<h1>Your Profile</h1>
+
+  <%= image_tag @user.image.url, :class => 'img-responsive img-size' %>
+  <p>Name: <strong><%= @user.name %></strong></p>
+  <p>About You : <strong><%= @user.about %></strong></p>
+  <p>Fun Fact About You: <strong><%= @user.fact %></strong></p>
+  <p>Places You've Been To: <strong><%= @user.places %></strong></p>
+
+

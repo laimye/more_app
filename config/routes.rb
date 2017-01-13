@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   root "trips#all"
-  resources :users, only: [:new, :create]
+  resources :users
   resources :pages
   resources :trips
   resources :posts

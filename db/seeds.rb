@@ -6,12 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-@users[1].posts[0].comments.create([
- {content: "Two alieans fell at the same speed."},
- {content: "3 space ships fell at the same speed."}
+Post.create([
+{handle: "Elena", content: "test", user_id: 1}
 ])
 
-@users[0].posts[0].comments.create([
- {content: "Two fishes fell at the same speed."},
- {content: "3 Sea animals fell at the same speed."}
-])
+Post.first.comments.create([
+{content: "test", user_id: 1, post_id: Post.last.id}
+	])
+
+
+# User.first.posts.first.comments.create([
+#  {content: "Two alieans fell at the same speed."},
+#  {content: "3 space ships fell at the same speed."}
+# ])
+
+# User.last.posts.last.comments.create([
+#  {content: "Two fishes fell at the same speed."},
+#  {content: "3 Sea animals fell at the same speed."}
+# ])
