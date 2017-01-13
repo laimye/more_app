@@ -1,0 +1,23 @@
+.panel {
+	width: 700px;
+	margin: 0 auto;
+}
+
+.form {
+	width: 600px;
+}
+
+.panel-heading {
+	height: 40px;
+}
+
+.panel-body {
+	width: 380px:
+	height: 40px;
+}
+
+.notice {
+	text-align: center;
+	font-size: 18px;
+	color: #4D9934;
+}

@@ -1,0 +1,23 @@
+<p class="notice" id="notice"><%= notice %></p>
+
+<div class="container">
+
+
+<h1>View All Posts</h1>
+
+
+    <% @posts.each do |post| %>
+		<div class="panel panel-info">
+		  <div class="panel-heading">
+		    <div class="panel-title pull-left"><strong>@<%= link_to "#{post.handle}", post_path(post) %></strong></div>
+		    <div class="panel-title pull-right"><%= post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
+		  </div>
+		  <div class="panel-body">
+		    <%= post.content %>
+		  </div>
+		</div>
+    <% end %>
+
+</div>
+
+<%= link_to "Create Post", new_post_path %>

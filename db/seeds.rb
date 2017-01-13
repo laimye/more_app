@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+@users[1].posts[0].comments.create([
+ {content: "Two alieans fell at the same speed."},
+ {content: "3 space ships fell at the same speed."}
+])
+
+@users[0].posts[0].comments.create([
+ {content: "Two fishes fell at the same speed."},
+ {content: "3 Sea animals fell at the same speed."}
+])

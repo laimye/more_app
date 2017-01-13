@@ -1,0 +1,33 @@
+<div class="container"
+<p id="notice"><%= notice %></p>
+
+		<div class="panel panel-info">
+		<div class="panel-heading">
+		  <div class="panel-title pull-left"><strong>@<%= @post.handle %></strong></div>
+		  <div class="panel-title pull-right"><%= @post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
+		</div>
+		  <div class="panel-body">
+		    <%= @post.content %>
+		  </div>
+		</div>
+
+<hr>
+
+<h3>Comments</h3>
+
+<% if @post.comments.length > 0 %>
+	<% @comments.each do |comment| %>
+		<ul>
+			<li><%= comment.content %></li>
+		</ul>
+	<% end %>
+	<%= render :partial => '/comments/form', :comment => @post.comments.new %>
+<% else %>
+	<%= render :partial => '/comments/form', :placeholder => "Be the first one to comment", :comment => @post.comments.new %>
+<% end %>
+
+<%= link_to "Back", posts_path %>  | 
+<%= link_to "Edit", edit_post_path(@post) %>  | 
+<%= link_to "Delete", post_path, method: :delete, data: { confirm: "Are you sure you want to delete this post?"} %>
+</div>
+

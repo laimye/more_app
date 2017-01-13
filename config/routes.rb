@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  
-  root "pages#show", page: 'home' # not sure about root yet..
+
+
+  root "trips#all"
   resources :users, only: [:new, :create]
   resources :pages
+  resources :trips
+  resources :posts
+  resources :comments
 
   resources :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new'

@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<h1>Your Trips</h1>
+
+<p>Current User's trips will be here </p>
+
+<ul>
+	<% @trips.each do |trip| %>
+		<li><h3><%= link_to trip.place, trip_path(trip)%></h3></li>
+		<p><%= trip.startdate.strftime('%d %b') %> - <%= trip.enddate.strftime('%d %b %Y') %></p>
+		<p><%= trip.about %></p>
+	<% end %>
+</ul>
+<br>
+
+<%= link_to "Create New Trip", new_trip_path %>
+
