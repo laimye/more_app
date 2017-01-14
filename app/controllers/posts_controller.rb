@@ -14,8 +14,6 @@ class PostsController < ApplicationController
 			@comment = @post.comments.new
 			@comment.post = @post
 			@comments = @post.comments
-			p "*" * 50
-			p @comments.first.errors.messages
 		end
 
 		def edit
@@ -26,7 +24,7 @@ class PostsController < ApplicationController
 		end
 
 		def create
-			@post = Post.new(post_params)
+			@post = Post.create(post_params)
 			if @post.save
 				redirect_to posts_path, notice: 'Your post was published!'
 			else
@@ -54,7 +52,7 @@ class PostsController < ApplicationController
 		end
 
 		def post_params
-			params.require(:post).permit(:handle, :content)
+			params.require(:post).permit(:handle, :content, :image)
 		end
 
 	end

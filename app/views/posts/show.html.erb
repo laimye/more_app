@@ -1,6 +1,9 @@
 <div class="container"
 <p id="notice"><%= notice %></p>
 
+		<% if @post.image.url.empty? %>
+			<%= image_tag @post.image.url, :class => 'img-responsive img-size' %>
+		<% end %>
 		<div class="panel panel-info">
 		<div class="panel-heading">
 		  <div class="panel-title pull-left"><strong>@<%= @post.handle %></strong></div>

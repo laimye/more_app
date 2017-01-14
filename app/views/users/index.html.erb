@@ -1,1 +1,16 @@
-<h1>All Users</h1>
+<p class="notice"><%= notice  %></p>
+<h1>Meet Our Crew</h1>
+
+<hr>
+
+<ul>
+	<% @users.each do |user| %>
+		<h2><%= link_to user.name, user_path(user)%></h2>
+		<%= image_tag user.image.url, :class => 'img-responsive img-size'  %>
+		<li><p><strong>A few words about: </strong><%= user.about %></p></li>
+		<li><p><strong>Fun fact: </strong> <%= user.fact %></p></li>
+		<li><p><strong>Places visited: :</strong> <%= user.places %></p></li>
+
+	<% end %>
+</ul>
+

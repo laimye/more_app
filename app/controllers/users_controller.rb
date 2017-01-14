@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+  
+  def index
+    if params[:sort]
+      @users = User.order(params[:sort])
+    else
+      @users = User.all
+    end
+  end
+
   def new
   	@user = User.new
   end
@@ -7,8 +16,25 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit
+    @user = User.find(params[:id])
+    unless current_user == @user
+      flash[:notice] = "You don't have permitions to edit other users' profiles."
+      redirect_to user_path(current_user)
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user == current_user && @user.update_attributes(user_params)
+      redirect_to users_path, notice: "You profile was successfully updated!"
+    else
+      render :edit
+    end
+  end
+
   def create
-  	@user = User.new(user_params)
+  	@user = User.create(user_params) #or User.new
   	if @user.save
   		session[:user_id] = @user.id # to automatically log in a new user
   		flash[:notice] = "You have successfully signed up!"
@@ -21,7 +47,7 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+		params.require(:user).permit(:name, :email, :fact, :about, :places, :image, :password, :password_confirmation)
 	end
 
 end

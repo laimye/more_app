@@ -21,12 +21,9 @@ class CommentsController < ApplicationController
 		end
 
 		def create
-			p "*" * 50
-			p params
-			p current_user
 			@comment = Comment.new(comment_params)
 			if @comment.save
-				redirect_to :back, notice: 'Your comment was published!'
+				redirect_to :back, notice: 'Your comment was posted!'
 			else
 				render :new
 			end

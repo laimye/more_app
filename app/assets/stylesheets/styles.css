@@ -21,3 +21,23 @@
 	font-size: 18px;
 	color: #4D9934;
 }
+
+.img-size {
+	height: 200px;
+	width: 200px;
+}
+
+.navbar-right {
+	font-size: 18px;
+	/*letter-spacing: 2px;*/
+	color: white;
+}
+
+.navbar {
+	padding-top: 10px;
+	background: white;
+}
+
+.glyphicon {
+	font-size: 1.8em;
+}
