@@ -8,8 +8,15 @@
 }
 
 .jumbotron {
-  height: 400px;
+  /*height: 400px;*/
   text-align: center;
+
+}
+
+.jumbotron .jm-background {
+  height: 600px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .panel-heading {
