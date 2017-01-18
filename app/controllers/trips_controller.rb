@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   
   before_action :authorize, except: [:all, :show]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
   	@trips = current_user.trips
@@ -15,10 +16,8 @@ class TripsController < ApplicationController
 
   def create
   	@trip = Trip.new(trip_params)
-
-  	current_user.trips << @trip
-
-  	if @trip.valid?
+    @trip.user = current_user
+  	if @trip.save
   		redirect_to trips_path
   	else
   		render :new
@@ -29,7 +28,7 @@ class TripsController < ApplicationController
   end
 
   def update
-  	if @trip.save
+  	if @trip.update_attributes(trip_params)
   		redirect_to trips_path
 		else
 			render :edit
@@ -41,18 +40,17 @@ class TripsController < ApplicationController
 		redirect_to trips_path
 	end
 
-
   def all
   	@trips = Trip.all
   end
 
 private
 
-	def set_user
+	def set_trip
 		@trip = Trip.find(params[:id])
 	end
 
 	def trip_params
-		params.require(:trip).permit(:place, :startdate, :enddate, :about)
+		params.require(:trip).permit(:place, :startdate, :enddate, :about, :image)
 	end
 end

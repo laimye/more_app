@@ -1,3 +1,61 @@
-<h2>The event</h2>
+<div class="jumbotron container">
+	<h1><%= @trip.place.upcase %></h1>
+	<p><%= @trip.startdate.strftime('%d %b') %> - <%= @trip.enddate.strftime('%d %b %Y') %></p><br>
+	<p><%= @trip.about %></p><br>
+	<%= link_to "Update Trip", edit_trip_path %>
+
+</div>
+
+<h3>Announcements</h3>
+
+<% if @trip.announcements.empty? %>
+	<p>This trip currently has no announcements</p>
+<% else %>
+	<% @trip.announcements.each do |announcement| %>
+		<div class="panel panel-info">
+		  <div class="panel-heading">
+		  	<div class="panel-title pull-left"><strong><%= link_to "#{announcement.user.name}", announcement_path(announcement) %></strong></div>
+				<div class="panel-title pull-right"><%= announcement.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
+			</div>
+			<div class="panel-body">
+			<%= announcement.content %>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
+<%= link_to "Create Announcement", new_trip_announcement_path(@trip) %>
 
 <hr>
+
+
+<h3>Posts</h3>
+
+<% if @trip.posts.empty? %>
+	<p>This trip currently has no posts</p>
+<% else %>
+	<% @trip.posts.each do |post| %>
+		<% if post.image.exists? %>
+			<%= image_tag post.image.url, :class => 'img-responsive img-size' %>
+		<% end %>
+		<div class="panel panel-info">
+		  <div class="panel-heading">
+		  	<div class="panel-title pull-left"><strong><%= link_to "#{post.user.name}", post_path(post) %></strong></div>
+				<div class="panel-title pull-right"><%= post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
+			</div>
+			<div class="panel-body">
+			<%= post.content %>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
+<%= link_to "Create Post", new_trip_post_path(@trip) %><br><br>
+
+
+
+
+
+
+
+

@@ -22,6 +22,8 @@ class CommentsController < ApplicationController
 
 		def create
 			@comment = Comment.new(comment_params)
+			@comment.user = current_user
+			@comment.post_id = params[:post_id]
 			if @comment.save
 				redirect_to :back, notice: 'Your comment was posted!'
 			else
@@ -31,7 +33,7 @@ class CommentsController < ApplicationController
 
 		def update
 			if @comment.update_attributes(comment_params)
-				redirect_to posts_path, notice: 'Your comment was succesfully updated!'
+				redirect_to post_path(@comment.post), notice: 'Your comment was succesfully updated!'
 			else
 				render :edit
 			end
@@ -39,7 +41,7 @@ class CommentsController < ApplicationController
 
 		def destroy
 			@comment.destroy
-			redirect_to posts_path, notice: 'Your comment was succesfully deleted!'
+			redirect_to :back, notice: 'Your comment was succesfully deleted!'
 		end
 
 		private
@@ -49,7 +51,7 @@ class CommentsController < ApplicationController
 		end
 
 		def comment_params
-			params.require(:comment).permit(:handle, :content, :user_id, :post_id)
+			params.require(:comment).permit(:content, :user_id, :post_id)
 		end
 
 end

@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113005705) do
+ActiveRecord::Schema.define(version: 20170117211903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announcements", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "announcements", ["trip_id"], name: "index_announcements_on_trip_id", using: :btree
+  add_index "announcements", ["user_id"], name: "index_announcements_on_user_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -27,8 +38,17 @@ ActiveRecord::Schema.define(version: 20170113005705) do
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "invites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "invites", ["trip_id"], name: "index_invites_on_trip_id", using: :btree
+  add_index "invites", ["user_id"], name: "index_invites_on_user_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
-    t.string   "handle"
     t.text     "content"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -48,14 +68,16 @@ ActiveRecord::Schema.define(version: 20170113005705) do
     t.date     "startdate"
     t.date     "enddate"
     t.string   "about"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "user_id"
   end
 
-  create_table "trips_users", id: false, force: :cascade do |t|
-    t.integer "trip_id", null: false
-    t.integer "user_id", null: false
-  end
+  add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -72,8 +94,13 @@ ActiveRecord::Schema.define(version: 20170113005705) do
     t.datetime "updated_at",         null: false
   end
 
+  add_foreign_key "announcements", "trips"
+  add_foreign_key "announcements", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "invites", "trips"
+  add_foreign_key "invites", "users"
   add_foreign_key "posts", "trips"
   add_foreign_key "posts", "users"
+  add_foreign_key "trips", "users"
 end

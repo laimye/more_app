@@ -1,18 +1,8 @@
 <h1>Create New Trip</h1>
 
-<%= form_for @trip, url: trips_path, html: { multipart: true } do |form| %>
+<div class="container">
 
-  <%= form.label :place %><br>
-  <%= form.text_field :place %><br><br>
+  <%= render 'form' %>
 
-  <%= form.label :startdate %><br>
-  <%= form.date_field :startdate %><br><br>
-
-  <%= form.label :enddate %><br>
-  <%= form.date_field :enddate %><br><br>
-
-  <%= form.label :about %><br>
-  <%= form.text_field :about %><br><br>
-
-  <%= form.submit 'Create Trip!' %>
-<% end %>
+  <div class="link"><%= link_to 'Back', trips_path %></div>
+</div>

@@ -1,0 +1,23 @@
+<p class="notice" id="notice"><%= notice %></p>
+
+<div class="container">
+
+
+<h1>View All Announcements</h1>
+
+
+    <% @announcements.each do |announcement| %>
+		<div class="panel panel-info">
+		  <div class="panel-heading">
+		    <div class="panel-title pull-left"><strong>@<%= link_to "#{announcement.handle}", announcement_path(announcement) %></strong></div>
+		    <div class="panel-title pull-right"><%= announcement.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
+		  </div>
+		  <div class="panel-body">
+		    <%= announcement.content %>
+		  </div>
+		</div>
+    <% end %>
+
+</div>
+
+<%= link_to "Create Announcement", new_announcement_path %>

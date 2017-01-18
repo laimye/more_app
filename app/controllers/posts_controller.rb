@@ -11,9 +11,7 @@ class PostsController < ApplicationController
 		end
 
 		def show
-			@comment = @post.comments.new
-			@comment.post = @post
-			@comments = @post.comments
+			@comment = Comment.new
 		end
 
 		def edit
@@ -21,12 +19,15 @@ class PostsController < ApplicationController
 
 		def new
 			@post = Post.new
+			@trip = Trip.find(params[:trip_id])
 		end
 
 		def create
-			@post = Post.create(post_params)
+			@post = Post.new(post_params)
+			@post.trip_id = params[:trip_id]
+			@post.user_id = current_user.id
 			if @post.save
-				redirect_to posts_path, notice: 'Your post was published!'
+				redirect_to @post.trip, notice: 'Your post was published!'
 			else
 				render :new
 			end
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
 
 		def update
 			if @post.update_attributes(post_params)
-				redirect_to posts_path, notice: 'Your post was succesfully updated!'
+				redirect_to @post.trip, notice: 'Your post was succesfully updated!'
 			else
 				render :edit
 			end
@@ -42,7 +43,7 @@ class PostsController < ApplicationController
 
 		def destroy
 			@post.destroy
-			redirect_to posts_path, notice: 'Your post was succesfully deleted!'
+			redirect_to @post.trip, notice: 'Your post was succesfully deleted!'
 		end
 
 		private
@@ -52,7 +53,7 @@ class PostsController < ApplicationController
 		end
 
 		def post_params
-			params.require(:post).permit(:handle, :content, :image)
+			params.require(:post).permit(:content, :image)
 		end
 
 	end
