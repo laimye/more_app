@@ -1,11 +1,8 @@
 class UsersController < ApplicationController
   
   def index
-    if params[:sort]
-      @users = User.order(params[:sort])
-    else
-      @users = User.all
-    end
+      @trip = Trip.find(params[:trip_id])
+      @invited_users = @trip.invited_users
   end
 
   def new
@@ -27,7 +24,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user == current_user && @user.update_attributes(user_params)
-      redirect_to users_path, notice: "You profile was successfully updated!"
+      redirect_to user_path(current_user), notice: "You profile was successfully updated!"
     else
       render :edit
     end

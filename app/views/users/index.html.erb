@@ -1,16 +1,18 @@
 <p class="notice"><%= notice  %></p>
-<h1>Meet Our Crew</h1>
+<h1>Meet Our Crew Members for the Trip to <%= @trip.place %></h1>
 
 <hr>
 
-<ul>
-	<% @users.each do |user| %>
-		<h2><%= link_to user.name, user_path(user)%></h2>
-		<%= image_tag user.image.url, :class => 'img-responsive img-size'  %>
-		<li><p><strong>A few words about: </strong><%= user.about %></p></li>
-		<li><p><strong>Fun fact: </strong> <%= user.fact %></p></li>
-		<li><p><strong>Places visited: :</strong> <%= user.places %></p></li>
-
+<% if @invited_users.count == 0 %>
+	<p>No crew members on this trip yet.</p>
+<% else %>
+	<% @invited_users.each do |u| %>
+	  <%= image_tag u.image.url, :class => 'img-responsive profile' %>
+		<h2><%= link_to "#{u.name}", user_path(u)%></h2>
+		<p>About: <%= u.about %></p>
+		<p>Fun Fact: <%= u.fact %></p>
+		<p>Places I've Been To: <%= u.places %></p>
 	<% end %>
-</ul>
+<% end %>
 
+<%= link_to "Invite Crew Members", new_trip_invite_path(@trip), class: "btn btn-default"  %>

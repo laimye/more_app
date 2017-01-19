@@ -17,3 +17,84 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.portfolio-item {
+	min-height: 400px;
+}
+
+.panel {
+	width: 700px;
+	margin: 0 auto;
+}
+
+.form {
+	width: 600px;
+}
+
+div .portfolio-item {
+  text-align: center;
+}
+
+.jumbotron {
+  height: 700px;
+  text-align: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.jumbotron p {
+  font-size: 20px;
+}
+
+.jumbotron a {
+  color: white;
+}
+
+.panel-heading {
+	height: 40px;
+}
+
+.panel-body {
+	width: 380px;
+	height: 40px;
+}
+
+.notice {
+	text-align: center;
+	font-size: 18px;
+	color: #4D9934;
+}
+
+.img-size {
+	width: 350px;
+}
+
+.profile {
+  width: 300px;
+  /*height: 200px;*/
+}
+
+.navbar {
+	padding-top: 10px;
+	background: white;
+}
+section h2.section-heading {
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.field .form-control {
+	width: 60%;
+	height: 40px;
+}
+
+.text-muted {
+  color: #777777;
+}
+
+
+.navbar-custom {
+  background-color: #222222;
+  border-color: transparent;
+}

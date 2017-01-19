@@ -22,10 +22,15 @@
 
       <div class="field">
       <%= f.file_field :image %><br><br>
-      </div>
-      
-    <div class="actions">
-      <%= f.submit %>
     </div>
-      <% end %>
+
+    <% if @post.id %>
+      <div class="actions"><%= f.submit  "Update Post", class: "btn btn-default"%></div>
+    <% else %>
+      <div class="actions"><%= f.submit  "Add Post", class: "btn btn-default"%></div>
+    <% end %><br>
+
+
     </div>
+  <% end %>
+</div>

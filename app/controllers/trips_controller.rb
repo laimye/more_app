@@ -5,9 +5,12 @@ class TripsController < ApplicationController
 
   def index
   	@trips = current_user.trips
+    @invited_trips = @current_user.trips
+    
   end
 
   def show
+    @invited_users = @trip.invited_users.all
   end
 
   def new
@@ -37,7 +40,7 @@ class TripsController < ApplicationController
 
 	def destroy
 		@trip.destroy
-		redirect_to trips_path
+		redirect_to root_path, notice: 'Your trip was succesfully deleted!'
 	end
 
   def all

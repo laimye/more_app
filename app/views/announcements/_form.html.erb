@@ -21,8 +21,11 @@
       <%= f.hidden_field :user_id, value: current_user.id %>
     </div>
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+    <% if @announcement.id %>
+      <div class="actions"><%= f.submit  "Update Announcement", class: "btn btn-default"%></div>
+    <% else %>
+      <div class="actions"><%= f.submit  "Add Announcement", class: "btn btn-default"%></div>
+    <% end %><br>
+
   <% end %>
 </div>

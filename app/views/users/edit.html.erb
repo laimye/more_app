@@ -27,12 +27,12 @@
 	  <%= f.file_field :image %><br><br>
   </div>
 
-  <div class="actions"><%= f.submit %></div>
+  <div class="actions"><%= f.submit "Update Profile", class: "btn btn-default"%></div>
 <% end %>
 
 	<div class="link">
 	<%= link_to 'Show', @post %> |
-	<%= link_to 'Back', posts_path %>
+	<%= link_to 'Back', :back %>
 	</div>
 </div>
 

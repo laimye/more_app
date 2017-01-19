@@ -1,9 +1,13 @@
-<div class="jumbotron container">
-<!-- 	<div class="jm-background image-responsive"><%= link_to image_tag "#{@trip.image}" %></div>-->
-	<h1><%= @trip.place.upcase %></h1>
-	<p><%= @trip.startdate.strftime('%d %b') %> - <%= @trip.enddate.strftime('%d %b %Y') %></p><br>
-	<p><%= @trip.about %></p><br>
-	<%= link_to "Update Trip", edit_trip_path %>
+<div class="jumbotron container-fluid" style="background-image: url(<%= @trip.image.url %>)"><br><br><br><br><br><br><br><br><br>
+	<div style="color: white">
+		<h1><%= @trip.place.upcase %></h1><br><br><br><br>
+		<p>
+			<%= @trip.startdate.strftime('%d %b') %> - <%= @trip.enddate.strftime('%d %b %Y') %><br><br>
+			<%= @trip.about %><br><br><br><br><br>
+		</p>
+		<a><%= link_to "Update Trip", edit_trip_path %> |
+	  <%= link_to "Invite Crew Members", new_trip_invite_path(@trip) %></a>
+	</div>
 
 </div>
 

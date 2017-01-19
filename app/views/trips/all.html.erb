@@ -9,14 +9,16 @@
         </div>
         <div class="row">
         <% @trips.each do |trip| %>
-           <div class="col-md-4 col-sm-6 portfolio-item">
+           <div class="col-lg-4 col-sm-6 portfolio-item">
                <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                    <div class="portfolio-hover">
                        <div class="portfolio-hover-content">
                            <i class="fa fa-plus fa-3x"></i>
                        </div>
                    </div>
-                   <%= link_to image_tag("#{trip.image}", :size => "60x60", :class => 'img-responsive img-size') %>
+                   <div class="trip-image">
+                    <%= link_to image_tag("#{trip.image}", :size => "40x40", :class => 'img-responsive img-size') %>
+                   </div>
 
                </a>
                <div class="portfolio-caption">
@@ -31,5 +33,5 @@
      </div>
    </section>
 
-<%= link_to "Create New Trip", new_trip_path %>
+<%= link_to "Create New Trip", new_trip_path, class: "btn btn-default" %>
 
