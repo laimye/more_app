@@ -31,15 +31,25 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user = User.create(user_params) #or User.new
-  	if @user.save
-  		session[:user_id] = @user.id # to automatically log in a new user
-  		flash[:notice] = "You have successfully signed up!"
-  		redirect_to root_path
-  	else
-  		render :new, notice: "Please try again."
-		end
-	end
+    @user = User.create(user_params) #or User.new
+    if @user.save
+      session[:user_id] = @user.id # to automatically log in a new user
+      flash[:notice] = "Welcome to More. It's nice to meet you!"
+      redirect_to root_path
+    else
+      render :new, notice: "Please try again."
+    end
+  end
+
+  def like
+    current_user.like!(params[:post_id]) unless current_user.like?(params[:post_id])
+    redirect_to post_path(params[:post_id])
+  end
+
+  def unlike
+    current_user.unlike!(params[:post_id]) if current_user.like?(params[:post_id])
+    redirect_to post_path(params[:post_id])
+  end
 
 	private
 
