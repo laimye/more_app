@@ -5,7 +5,7 @@
 #background-signup {
 	margin-top: -20px;
 	margin-left: -15px;
-	background-image: url(/assets/more2.jpg);
+	background-image: image_url('more2.jpg');
   width: 102%;
   background-size: cover;
   height: 100%;
@@ -68,7 +68,7 @@
 #login-background {
 		margin-top: -20px;
 		margin-left: 0px;
-		background-image: url(/assets/sail2.jpg);
+		background-image: image_url('sail2.jpg');
 	  width: 100%;
 	  background-size: cover;
 	  height: 100%;
