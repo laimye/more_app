@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
   
-  before_action :authorize, except: [:all, :show]
+  before_action :authorize, except: [:all]
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
