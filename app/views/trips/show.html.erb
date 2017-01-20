@@ -5,10 +5,11 @@
 			<%= @trip.startdate.strftime('%d %b') %> - <%= @trip.enddate.strftime('%d %b %Y') %><br><br>
 			<%= @trip.about %><br><br><br><br><br>
 		</p>
-		<a><%= link_to "Update Trip", edit_trip_path %> |
-	  <%= link_to "Invite Crew Members", new_trip_invite_path(@trip) %></a>
+		<a>
+			<%= link_to "Update Trip", edit_trip_path %> |
+		  <%= link_to "Invite Crew Members", new_trip_invite_path(@trip) %>
+	  </a>
 	</div>
-
 </div>
 <div class="container-fluid">
 	<h1 class="text-muted">Announcements</h1>
@@ -23,7 +24,7 @@
 					<div class="panel-title pull-right"><%= announcement.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
 				</div>
 				<div class="panel-body">
-				<%= announcement.content %>
+					<%= announcement.content %>
 				</div>
 			</div><br>
 		<% end %>
@@ -32,7 +33,6 @@
 	<div class="links-on-bottom"><%= link_to "Create Announcement", new_trip_announcement_path(@trip) %></div>
 
 	<hr>
-
 
 	<h1 class="text-muted">Posts</h1>
 

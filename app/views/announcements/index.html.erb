@@ -1,12 +1,11 @@
-<p class="notice" id="notice"><%= notice %></p>
 
 <div class="container">
 
+	<p class="notice" id="notice"><%= notice %></p>
 
-<h1>View All Announcements</h1>
+	<h1>View All Announcements</h1>
 
-
-    <% @announcements.each do |announcement| %>
+  <% @announcements.each do |announcement| %>
 		<div class="panel panel-info">
 		  <div class="panel-heading">
 		    <div class="panel-title pull-left"><strong>@<%= link_to "#{announcement.handle}", announcement_path(announcement) %></strong></div>
@@ -16,8 +15,8 @@
 		    <%= announcement.content %>
 		  </div>
 		</div>
-    <% end %>
+  <% end %>
+
+	<%= link_to "Create Announcement", new_announcement_path %>
 
 </div>
-
-<%= link_to "Create Announcement", new_announcement_path %>

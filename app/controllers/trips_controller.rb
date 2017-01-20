@@ -50,7 +50,7 @@ class TripsController < ApplicationController
   	@trips = Trip.all
   end
 
-private
+  private
 
 	def set_trip
 		@trip = Trip.find(params[:id])
@@ -59,4 +59,5 @@ private
 	def trip_params
 		params.require(:trip).permit(:place, :startdate, :enddate, :about, :image)
 	end
+  
 end

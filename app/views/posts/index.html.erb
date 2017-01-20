@@ -1,36 +1,33 @@
-<p class="notice" id="notice"><%= notice %></p>
-
 <div class="container">
+	
+	<p class="notice" id="notice"><%= notice %></p>
+	<h1>View All Posts</h1>
 
+  <% @posts.each do |post| %>
+		<div class="panel panel-info">
+		  <div class="panel-heading">
+		    <div class="panel-title pull-left"><strong>@<%= link_to "#{post.handle}", post_path(post) %></strong></div>
+		    <div class="panel-title pull-right"><%= post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
+		  </div>
+		  <div class="panel-body">
+		    <% if post.image.exists? %>
+				  <div class="post-image-show pull-left col-md-6">
+			    	<%= image_tag post.image.url, :class => 'img-responsive img-size' %>
+		    	</div>
+					<div class="post-content pull-right col-md-6">
+						<%= post.content %>
+					</div>
+				<% else %>
+		    	<%= post.content %>
+	    	<% end %>
+		  </div>
 
-<h1>View All Posts</h1>
-
-
-    <% @posts.each do |post| %>
-			<div class="panel panel-info">
-			  <div class="panel-heading">
-			    <div class="panel-title pull-left"><strong>@<%= link_to "#{post.handle}", post_path(post) %></strong></div>
-			    <div class="panel-title pull-right"><%= post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
-			  </div>
-			  <div class="panel-body">
-			    <% if post.image.exists? %>
-					  <div class="post-image-show pull-left col-md-6">
-				    	<%= image_tag post.image.url, :class => 'img-responsive img-size' %>
-			    	</div>
-  					<div class="post-content pull-right col-md-6">
-  						<%= post.content %>
-  					</div>
-  				<% else %>
-  		    	<%= post.content %>
-  	    	<% end %>
-			  </div>
-
-			  <div_for post do %>
-			  	<%= render partial: "likes/like", locals: { post: post } %>
-			  <% end %>
-			</div>
-    <% end %>
+		  <div_for post do %>
+		  	<%= render partial: "likes/like", locals: { post: post } %>
+		  <% end %>
+		</div>
+  <% end %>
+	<%= link_to "Create Post", new_post_path %><br><br>
 
 </div>
 
-<%= link_to "Create Post", new_post_path %><br><br>

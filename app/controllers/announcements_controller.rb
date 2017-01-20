@@ -33,7 +33,6 @@ before_action :set_announcement, only: [:show, :edit, :update, :destroy]
 			end
 		end
 
-
 		def update
 			if @announcement.update_attributes(announcement_params)
 				redirect_to @announcement.trip, notice: 'Your announcement was succesfully updated!'

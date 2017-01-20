@@ -1,11 +1,6 @@
-<div class="profile">
-<%= form_for [@trip, @invite] do |f| %>
-  <%#= f.label :user_id, "Select Travellers"%>
-  <%#= f.select(:user_id) %>
-  <%= f.collection_select(:user_id, @users, :id, :name) %>
-  <%= f.submit "Add Crew Member", class: "btn btn-default" %>
-
-  <%#= options_from_collection_for_select(@users, :id, :name) %>
-
-<% end %>
+<div class="profile container">
+	<%= form_for [@trip, @invite] do |f| %>
+  	<%= f.collection_select(:user_id, @users, :id, :name) %>
+  	<%= f.submit "Add Crew Member", class: "btn btn-default" %>
+	<% end %>
 </div>
