@@ -1,11 +1,24 @@
-<h1>Log In</h1>
-<p id="alert"><%= alert %></p>
-<%= form_tag sessions_path do %>
-  <div class="field">
-    <%= text_field_tag :email, params[:email], :placeholder  => "Email" %>
-  </div>
-  <div class="field">
-    <%= password_field_tag :password, params[:password], :placeholder => "Password" %>
-  </div>
-  <div class="actions"><%= submit_tag "Log In" %></div>
-<% end %>
+<div class="row" id="login-background">
+	<div class="container pull-right">
+		<h1>LOG IN TO MORE</h1><br>
+		<p id="alert"><%= alert %></p>
+		<%= form_tag sessions_path, class: "form-horizontal" do %>
+		  <div class="field form-group form-inline">
+			  <%= label_tag :email, "Email", :class => "control-label col-sm-3 log" %>
+		    <%= text_field_tag :email, params[:email], :placeholder  => "Email", class: "form-control" %>
+		  </div>
+		  <div class="field form-group form-inline">
+		 		<%= label_tag :password, "Password", class: "control-label col-sm-3 log" %>
+		    <%= password_field_tag :password, params[:password], :placeholder => "Password", class: "form-control" %>
+		  </div>
+		  <div class="field form-group">
+		    <div class="col-sm-offset-2 col-sm-10 login-links log" >
+		  		<span class="actions"><%= submit_tag "Log In", class: 'btn btn-info' %></span> &nbsp; &nbsp; &nbsp; &nbsp;
+		  		<span id="new-account">Don't have an account yet? &nbsp; &nbsp;<%= link_to "Sign up here.", new_user_path %></span>
+	  		</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+

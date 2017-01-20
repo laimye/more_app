@@ -4,9 +4,12 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-  	@trips = current_user.trips
-    @invited_trips = @current_user.trips
-    
+    trips = current_user.trips
+    invited = current_user.invited_trips
+    trips = trips.to_a + invited.to_a
+    trips = trips.map { |t| t.id }
+    trips = trips.uniq
+    @trips = Trip.where("id IN (?)", trips)
   end
 
   def show

@@ -16,36 +16,5 @@ def unheart
   @like.destroy!
 end
 
-  # before_action :set_post
-
-
-# def index
-# end
-
-# def new
-
-# end
-
-# def create
-# 	@post.likes.where(user_id: current_user.id).first_or_create
-
-#   respond_to do |format|
-#     redirect_to @post
-#   end
-# end
-
-# def destroy
-#   @post.likes.where(user_id: current_user.id).destroy_all
-
-#   respond_to do |format|
-#     redirect_to @post
-#   end
-# end
-
-# private
-
-# def set_post
-#   @post = Post.find(params[:post_id])
-# end
 
 end

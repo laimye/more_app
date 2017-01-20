@@ -40,27 +40,35 @@
 	<p>This trip currently has no posts</p>
 <% else %>
 	<% @trip.posts.each do |post| %>
-		<% if post.image.exists? %>
-			<%= image_tag post.image.url, :class => 'img-responsive img-size' %>
-		<% end %>
 		<div class="panel panel-info">
 		  <div class="panel-heading">
 		  	<div class="panel-title pull-left"><strong><%= link_to "#{post.user.name}", post_path(post) %></strong></div>
 				<div class="panel-title pull-right"><%= post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
 			</div>
 			<div class="panel-body">
-			<%= post.content %>
-			</div>
-		</div>
+				<% if post.image.exists? %>
+					<div class="pull-left col-md-6">
+						<%= image_tag post.image.url, :class => 'img-responsive img-size' %>
+					</div>
+					<div class="post-content pull-right col-md-6">
+						<%= post.content %>
+					</div>
+				<% else %>
+		    	<%= post.content %>
+	    	<% end %>
+		  </div>
+		  <div class="panel-footer">
+				<span> <%= post.likes.count %> likes </span>&nbsp;&nbsp;&nbsp;
+		  	<% if current_user.like?(post.id) %>
+					<%= link_to "", unlike_path(post), class: "glyphicon glyphicon-thumbs-down" %>  
+				<% else %>
+					<%= link_to "", like_path(post), class: "glyphicon glyphicon-thumbs-up" %>  
+				<% end %>
+		  </div>
+		</div><br>
 	<% end %>
 <% end %>
 
 <%= link_to "Create Post", new_trip_post_path(@trip) %><br><br>
-
-
-
-
-
-
 
 

@@ -1,44 +1,63 @@
-<h1>Sign Up</h1>
-<h2>THE ART OF TRAVELLING</h2>
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
+<div class="container-fluid">
+  <div class="row" id="background-signup">
+    <div class="col-lg-8 su-label pull-left">
+      <h3>SIGN UP TO MORE</h3><br>
+      <%= form_for @user do |f| %>
+        <% if @user.errors.any? %>
+          <div class="error_messages">
+            <h2>Form is invalid</h2>
+            <ul>
+              <% for message in @user.errors.full_messages %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+        <div class="container form-horizontal">
+          <div class="field form-group form-inline">
+            <%= f.label :Name, :class => "control-label col-sm-3" %>
+            <%= f.text_field :name, :required => true, placeholder: "Name", :class => "form-control" %>
+          </div>
+          <div class="field form-group form-inline">
+            <%= f.label :Email, :class => "control-label col-sm-3" %>
+            <%= f.text_field :email, :required => true, placeholder: "Email", :class => "form-control" %>
+          </div>
+          <div class="field form-group form-inline">
+            <%= f.label :Password, :class => "control-label col-sm-3" %>
+            <%= f.password_field :password, :required => true, placeholder: "Password", :class => "form-control" %>
+          </div>
+          <div class="field form-group form-inline">
+            <%= f.label :"Password Confirmation", :class => "control-label col-sm-3" %>
+            <%= f.password_field :password_confirmation, :required => true, placeholder: "Confirm Password", :class => "form-control" %>
+          </div>
+
+          <div class="field form-group form-inline">
+            <%= f.label :About, :class => "control-label col-sm-3" %>
+            <%= f.text_area :about, placeholder: "Tell us about yourself", :class => "form-control" %>
+          </div>
+
+          <div class="field form-group form-inline">
+            <%= f.label :"Fun Fact", :class => "control-label col-sm-3" %>
+            <%= f.text_area :fact, placeholder: "Anything funny about you?", :class => "form-control" %>
+          </div>
+
+          <div class="field form-group form-inline">
+            <%= f.label :"Travel Experience", :class => "control-label col-sm-3" %>
+            <%= f.text_area :places, placeholder: "Share with others places you've traveled to", :class => "form-control" %>
+          </div>
+
+          <div class="field form-group image">
+            <%= f.file_field :image %><br><br>
+          </div>
+
+          <div class="actions sign-up"><%= f.submit  "Create Profile", class: "btn btn-info"%></div>
+      
+        </div>
+      <% end %>
     </div>
-  <% end %>
-  <div class="field">
-    <%= f.text_field :name, :required => true, placeholder: "Name" %><br>
+    <div class="col-lg-4 pull-right su-copy">
+      <!-- <h2>Sign Up to More</h2><br> -->
+      <h1>THE ART OF TRAVELLING</h1>
+    </div>
   </div>
-  <div class="field">
-    <%= f.text_field :email, :required => true, placeholder: "Email" %>
-  </div>
-  <div class="field">
-    <%= f.password_field :password, :required => true, placeholder: "Password" %>
-  </div>
-  <div class="field">
-    <%= f.password_field :password_confirmation, :required => true, placeholder: "Confirm Password" %>
-  </div>
-
-  <div class="field">
-  <%= f.text_area :about, placeholder: "Tell us about yourself" %>
-  </div>
-
-  <div class="field">
-  <%= f.text_area :fact, placeholder: "Any fun facts you would like to share?" %>
-  </div>
-
-  <div class="field">
-  <%= f.text_area :places, placeholder: "Share with others places you've travelled to" %>
-  </div>
-
-  <div class="field">
-  <%= f.file_field :image %><br><br>
-  </div>
-
-  <div class="actions"><%= f.submit  "Create Profile", class: "btn btn-default"%></div>
-<% end %>
+</div>

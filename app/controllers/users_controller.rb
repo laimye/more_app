@@ -43,12 +43,12 @@ class UsersController < ApplicationController
 
   def like
     current_user.like!(params[:post_id]) unless current_user.like?(params[:post_id])
-    redirect_to post_path(params[:post_id])
+    redirect_to :back
   end
 
   def unlike
     current_user.unlike!(params[:post_id]) if current_user.like?(params[:post_id])
-    redirect_to post_path(params[:post_id])
+    redirect_to :back
   end
 
 	private

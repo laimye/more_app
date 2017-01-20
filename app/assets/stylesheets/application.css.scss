@@ -11,16 +11,18 @@
  * file per style scope.
  *
  *= require rails_bootstrap_forms
+ *= require users
  *= require_tree .
  *= require_self
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-.portfolio-item {
-	min-height: 400px;
-}
+@import "users";
+@import "trips";
+@import "announcements";
+@import "posts";
+@import "comments";
 
 .panel {
 	width: 700px;
@@ -31,32 +33,12 @@
 	width: 600px;
 }
 
-div .portfolio-item {
-  text-align: center;
-}
-
-.jumbotron {
-  height: 700px;
-  text-align: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.jumbotron p {
-  font-size: 20px;
-}
-
-.jumbotron a {
-  color: white;
-}
-
 .panel-heading {
 	height: 40px;
 }
 
 .panel-body {
 	width: 380px;
-	height: 40px;
 }
 
 .notice {
@@ -85,7 +67,7 @@ section h2.section-heading {
 }
 
 .field .form-control {
-	width: 60%;
+	width: 40%;
 	height: 40px;
 }
 
@@ -93,8 +75,10 @@ section h2.section-heading {
   color: #777777;
 }
 
-
 .navbar-custom {
   background-color: #222222;
   border-color: transparent;
 }
+
+
+

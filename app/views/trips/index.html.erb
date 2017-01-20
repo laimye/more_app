@@ -1,38 +1,41 @@
-<p id="notice"><%= notice %></p>
-<!-- <h1>Your Trips</h1> -->
-<section id="portfolio" class="bg-light-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Your Trips</h2>
-                <h3 class="section-subheading text-muted">I'm going on adventure!.</h3>
-            </div>
-        </div>
-        <div class="row">
-        <% @trips.each do |trip| %>
-           <div class="col-md-4 col-sm-6 portfolio-item">
-               <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                   <div class="portfolio-hover">
-                       <div class="portfolio-hover-content">
-                           <i class="fa fa-plus fa-3x"></i>
-                       </div>
-                   </div>
-                   <%= link_to image_tag("#{trip.image}", :size => "40x40", :class => "img-responsive img-size") %>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <!-- <h1>Your Trips</h1> -->
+  <section id="portfolio" class="bg-light-gray">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12 text-center">
+                  <h2 class="section-heading text-muted">YOU ARE GOING ON ADVENTURE!</h2><br><br><br>
+                  <!-- <h3 class="section-subheading text-muted">You're going on adventure!</h3><br><br> -->
+              </div>
+          </div>
+          <div class="row">
+          <% @trips.each do |trip| %>
+             <div class="col-md-4 col-sm-6 portfolio-item">
+                 <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                     <div class="portfolio-hover">
+                         <div class="portfolio-hover-content">
+                             <i class="fa fa-plus fa-3x"></i>
+                         </div>
+                     </div>
+                     <%= link_to image_tag("#{trip.image}", :size => "40x40", :class => "img-responsive img-size") %>
 
-               </a>
-               <div class="portfolio-caption">
-                   <h4><%= link_to trip.place, trip_path(trip)%></h4>
-                   <p class="text-muted"><%= trip.startdate.strftime('%d %b') %> - <%= trip.enddate.strftime('%d %b %Y') %></p>
+                 </a>
+                 <div class="portfolio-caption">
+                     <h4><%= link_to trip.place.upcase, trip_path(trip)%></h4>
+                     <p class="text-muted"><%= trip.startdate.strftime('%d %b') %> - <%= trip.enddate.strftime('%d %b %Y') %></p>
 
-                   <p class="text-muted"><%= trip.about %></p>
-               </div>
-           </div>
-         <% end %>
+                     <p class="text-muted"><%= trip.about %></p>
+                 </div>
+             </div>
+           <% end %>
+         </div>
        </div>
-     </div>
-   </section><br><br>
+     </section><br><br>
 
-<%= link_to "Create New Trip", new_trip_path %> |
-<%= link_to "Show All Trips", root_path %> 
-
+  <div class="links-on-bottom">
+    <%= link_to "Create New Trip", new_trip_path %> |
+    <%= link_to "Show All Trips", root_path %> 
+  </div><br><br><br>
+</div>
 

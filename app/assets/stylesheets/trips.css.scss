@@ -1,0 +1,49 @@
+/*// Place all the styles related to the trips controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+*/
+
+.links-on-bottom {
+	text-align: center;
+	font-size: 18px;
+}
+
+/*.portfolio-caption h4 {
+	letter-spacing: 3px;
+}*/
+
+div .portfolio-item {
+  text-align: center;
+}
+
+.portfolio-item {
+	min-height: 400px;
+}
+
+#portfolio h2 {
+	font-size: 35px;
+	letter-spacing: 10px;
+}
+
+.jumbotron {
+  height: 700px;
+  text-align: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.jumbotron p {
+  font-size: 20px;
+}
+
+.jumbotron h1 {
+	letter-spacing: 20px;
+}
+
+.jumbotron a {
+  color: white;
+}
+
+.panel-body .pull-left {
+	padding-left: 0px;
+}

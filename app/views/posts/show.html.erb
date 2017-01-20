@@ -1,30 +1,29 @@
-<div class="container"
-<p id="notice"><%= notice %></p>
+<div class="container-fluid post-show">
+	<p id="notice"><%= notice %></p>
 
-		<% if @post.image.exists? %>
-			<%= image_tag @post.image.url, :class => 'img-responsive img-size' %>
-		<% end %>
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<div class="panel-title pull-left"><strong><%= @post.user.name %></strong></div>
-			  <div class="panel-title pull-left"><%= @post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
-			</div>
-		  <div class="panel-body">
-		    <%= @post.content %>
-		  </div>
-		  <div class="panel-footer">
-				<span> <%= @post.likes.count %> users liked this post</span>&nbsp;&nbsp;&nbsp;
-		  	<% if current_user.like?(@post.id) %>
-					<%= link_to "", unlike_path(@post), class: "glyphicon glyphicon-thumbs-down" %>  
-				<% else %>
-					<%= link_to "", like_path(@post), class: "glyphicon glyphicon-thumbs-up" %>  
-				<% end %>
-		  </div>
+	<% if @post.image.exists? %>
+		<%= image_tag @post.image.url, :class => 'img-responsive img-size post-show-image' %>
+	<% end %>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<div class="panel-title pull-left"><strong><%= @post.user.name %></strong></div>
+		  <div class="panel-title pull-right"><%= @post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
 		</div>
+	  <div class="panel-body">
+	    <%= @post.content %>
+	  </div>
+	  <div class="panel-footer">
+			<span> <%= @post.likes.count %> likes </span>&nbsp;&nbsp;&nbsp;
+	  	<% if current_user.like?(@post.id) %>
+				<%= link_to "", unlike_path(@post), class: "glyphicon glyphicon-thumbs-down" %>  
+			<% else %>
+				<%= link_to "", like_path(@post), class: "glyphicon glyphicon-thumbs-up" %>  
+			<% end %>
+	  </div>
+	</div>
 
 	<%= link_to "Edit", edit_post_path(@post) %>  | 
 	<%= link_to "Delete", post_path, method: :delete, data: { confirm: "Are you sure you want to delete this post?"} %>
-
 
 	<hr>
 
@@ -39,7 +38,6 @@
 					<%= link_to "Delete", comment_path(comment),  method: :delete, data: { confirm: "Are you sure you want to delete this comment?"}%>
 				</div>
 			</div><br>
-			
 		<% end %>
 		<%= render '/comments/form' %>
 	<% else %>
