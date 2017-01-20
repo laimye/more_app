@@ -1,18 +1,31 @@
-<p class="notice"><%= notice  %></p>
-<h1>Meet Our Crew Members for the Trip to <%= @trip.place %></h1>
+<div class="container fluid">
 
-<hr>
+	<p class="notice"><%= notice  %></p>
+	<h1 class="text-muted">Meet Our Crew Members for the Trip to <%= @trip.place %></h1>
 
-<% if @invited_users.count == 0 %>
-	<p>No crew members on this trip yet.</p>
-<% else %>
-	<% @invited_users.each do |u| %>
-	  <%= image_tag u.image.url, :class => 'img-responsive profile' %>
-		<h2><%= link_to "#{u.name}", user_path(u)%></h2>
-		<p>About: <%= u.about %></p>
-		<p>Fun Fact: <%= u.fact %></p>
-		<p>Places I've Been To: <%= u.places %></p>
+	<hr>
+
+	<% if @invited_users.count == 0 %>
+		<p>No crew members on this trip yet.</p>
+	<% else %>
+		<% @invited_users.each do |u| %>
+			<div class="container profile-info">
+				<div class="col-md-4">
+					<% if u.image? %>
+		  			<%= image_tag u.image.url, :class => 'img-responsive profile portfolio-image-cropper' %>
+	  			<% else %>
+	  				<%= image_tag('default_user.png', class: 'img-responsive profile portfolio-image-cropper') %>
+  				<% end %>
+	  		</div>
+	  		<div class="col-md-8">
+					<h2><%= link_to "#{u.name}", user_path(u)%></h2>
+					<p>About: <%= u.about %></p>
+					<p>Fun Fact: <%= u.fact %></p>
+					<p>Places Visited: <%= u.places %></p>
+				</div>
+			</div><br><hr>
+		<% end %>
 	<% end %>
-<% end %>
+</div>
+<div class="links-on-bottom"><%= link_to "Invite Crew Members", new_trip_invite_path(@trip), class: "btn btn-info" %></div><br><br>
 
-<%= link_to "Invite Crew Members", new_trip_invite_path(@trip), class: "btn btn-default"  %>

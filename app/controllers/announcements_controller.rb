@@ -11,6 +11,7 @@ before_action :set_announcement, only: [:show, :edit, :update, :destroy]
 		end
 
 		def show
+			@announcement = Announcement.new
 		end
 
 		def edit

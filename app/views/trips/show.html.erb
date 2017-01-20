@@ -10,65 +10,66 @@
 	</div>
 
 </div>
+<div class="container-fluid">
+	<h1 class="text-muted">Announcements</h1>
 
-<h3>Announcements</h3>
-
-<% if @trip.announcements.empty? %>
-	<p>This trip currently has no announcements</p>
-<% else %>
-	<% @trip.announcements.each do |announcement| %>
-		<div class="panel panel-info">
-		  <div class="panel-heading">
-		  	<div class="panel-title pull-left"><strong><%= link_to "#{announcement.user.name}", announcement_path(announcement) %></strong></div>
-				<div class="panel-title pull-right"><%= announcement.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
-			</div>
-			<div class="panel-body">
-			<%= announcement.content %>
-			</div>
-		</div>
+	<% if @trip.announcements.empty? %>
+		<p>This trip currently has no announcements</p>
+	<% else %>
+		<% @trip.announcements.each do |announcement| %>
+			<div class="panel panel-info">
+			  <div class="panel-heading">
+			  	<div class="panel-title pull-left"><strong><%= link_to "#{announcement.user.name}", announcement_path(announcement) %></strong></div>
+					<div class="panel-title pull-right"><%= announcement.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
+				</div>
+				<div class="panel-body">
+				<%= announcement.content %>
+				</div>
+			</div><br>
+		<% end %>
 	<% end %>
-<% end %>
 
-<%= link_to "Create Announcement", new_trip_announcement_path(@trip) %>
+	<div class="links-on-bottom"><%= link_to "Create Announcement", new_trip_announcement_path(@trip) %></div>
 
-<hr>
+	<hr>
 
 
-<h3>Posts</h3>
+	<h1 class="text-muted">Posts</h1>
 
-<% if @trip.posts.empty? %>
-	<p>This trip currently has no posts</p>
-<% else %>
-	<% @trip.posts.each do |post| %>
-		<div class="panel panel-info">
-		  <div class="panel-heading">
-		  	<div class="panel-title pull-left"><strong><%= link_to "#{post.user.name}", post_path(post) %></strong></div>
-				<div class="panel-title pull-right"><%= post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
-			</div>
-			<div class="panel-body">
-				<% if post.image.exists? %>
-					<div class="pull-left col-md-6">
-						<%= image_tag post.image.url, :class => 'img-responsive img-size' %>
-					</div>
-					<div class="post-content pull-right col-md-6">
-						<%= post.content %>
-					</div>
-				<% else %>
-		    	<%= post.content %>
-	    	<% end %>
-		  </div>
-		  <div class="panel-footer">
-				<span> <%= post.likes.count %> likes </span>&nbsp;&nbsp;&nbsp;
-		  	<% if current_user.like?(post.id) %>
-					<%= link_to "", unlike_path(post), class: "glyphicon glyphicon-thumbs-down" %>  
-				<% else %>
-					<%= link_to "", like_path(post), class: "glyphicon glyphicon-thumbs-up" %>  
-				<% end %>
-		  </div>
-		</div><br>
+	<% if @trip.posts.empty? %>
+		<p>This trip currently has no posts</p>
+	<% else %>
+		<% @trip.posts.each do |post| %>
+			<div class="panel panel-info">
+			  <div class="panel-heading">
+			  	<div class="panel-title pull-left"><strong><%= link_to "#{post.user.name}", post_path(post) %></strong></div>
+					<div class="panel-title pull-right"><%= post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
+				</div>
+				<div class="panel-body">
+					<% if post.image.exists? %>
+						<div class="pull-left col-md-4">
+							<%= image_tag post.image.url, :class => 'img-responsive img-size-post' %>
+						</div>
+						<div class="post-content pull-right col-md-8">
+							<%= post.content %>
+						</div>
+					<% else %>
+			    	<%= post.content %>
+		    	<% end %>
+			  </div>
+			  <div class="panel-footer">
+					<span> <%= post.likes.count %> likes </span>&nbsp;&nbsp;&nbsp;
+			  	<% if current_user.like?(post.id) %>
+						<%= link_to "", unlike_path(post), class: "glyphicon glyphicon-thumbs-down" %>  
+					<% else %>
+						<%= link_to "", like_path(post), class: "glyphicon glyphicon-thumbs-up" %>  
+					<% end %>
+			  </div>
+			</div><br>
+		<% end %>
 	<% end %>
-<% end %>
 
-<%= link_to "Create Post", new_trip_post_path(@trip) %><br><br>
+	<div class="links-on-bottom"><%= link_to "Create Post", new_trip_post_path(@trip) %><br><br></div>
+</div>
 
 

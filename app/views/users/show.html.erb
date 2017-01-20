@@ -1,68 +1,109 @@
 <p class="notice"><%= notice  %></p>
+<div class="container fluid">
+	<div class="container profile-info">
+		<div class="col-md-4">
+		  <%= image_tag @user.image.url, :class => 'img-responsive profile portfolio-image-cropper' %>
+		</div>
+		<div class="col-md-8">
+		  <h2 class="text-muted"><strong><%= @user.name.upcase %></strong></h2><br>
+		  <p>
+		  	About You : <strong><%= @user.about %></strong><br>
+		 		Fun Fact About You: <strong><%= @user.fact %></strong><br>
+		  	Places You've Been To: <strong><%= @user.places %></strong>
+			</p><br><br>
 
-<div class="container">
-  <%= image_tag @user.image.url, :class => 'img-responsive profile' %>
-  <h1><strong><%= @user.name %></strong></h1>
-  <p>
-  	About You : <strong><%= @user.about %></strong><br>
- 		Fun Fact About You: <strong><%= @user.fact %></strong><br>
-  	Places You've Been To: <strong><%= @user.places %></strong>
-	</p>
-
-	<% if @user == current_user %>
-		<%= link_to "Edit Your Profile", edit_user_path(@user) %> | 
-	<% end %>
-	<%= link_to "Back", :back %>
+			<% if @user == current_user %>
+				<%= link_to "Edit Your Profile", edit_user_path(@user) %> | 
+			<% end %>
+			<%= link_to "Back", :back %>
+		</div><br><br><br>
+	</div>
 	<hr>
 
-	<h3><%= @user.name%>'s Trips</h3>
+	<h3 class="text-muted row">PLANNED TRIPS</h3>
 
-	<% @user.invited_trips.each do |trip| %>
-    <div class="col-md-4 col-sm-6 portfolio-item">
-      <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-        <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-          </div>
-        </div>
-          <%= link_to image_tag("#{trip.image}", :size => "40x40", :class => "img-responsive img-size") %>
-      </a>
-      <div class="portfolio-caption">
-	      <h4><%= link_to trip.place, trip_path(trip)%></h4>
-	      <p class="text-muted"><%= trip.startdate.strftime('%d %b') %> - <%= trip.enddate.strftime('%d %b %Y') %></p>
 
-	      <p class="text-muted"><%= trip.about %></p>
-      </div>
-  	</div>
-  <% end %>
+	<div class="container">
+		<% @user.invited_trips.each do |trip| %>
+		  <div class="col-md-4 col-sm-6 portfolio-item">
+		    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+		      <div class="portfolio-hover">
+		        <div class="portfolio-hover-content">
+		          <i class="fa fa-plus fa-3x"></i>
+		        </div>
+		      </div>
+		        <%= link_to image_tag("#{trip.image}", :size => "40x40", :class => "img-responsive img-size") %>
+		    </a>
+		    <div class="portfolio-caption">
+		      <h4><%= link_to trip.place, trip_path(trip)%></h4>
+		      <p class="text-muted"><%= trip.startdate.strftime('%d %b') %> - <%= trip.enddate.strftime('%d %b %Y') %></p>
+
+		      <p class="text-muted"><%= trip.about %></p>
+		    </div>
+			</div>
+		<% end %>
+	</div>
 
   <hr>
 
+	<div class="container">
+		<h3 class="row text-muted">RECENT ANNOUNCEMENTS</h3>
+
+	  <% if @user.announcements.empty? %>
+	  	<p>This user currently has no announcements</p>
+	  <% else %>
+	  	<% @user.announcements.order(:trip_id).each do |announcement| %>
+	  		<div class="panel panel-info">
+	  		  <div class="panel-heading">
+	  		  	<div class="panel-title pull-left"><strong><%= link_to "#{announcement.user.name}", announcement_path(announcement) %></strong></div>
+	  				<div class="panel-title pull-right"><%= announcement.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
+	  			</div>
+	  			<div class="panel-body">
+	  			<%= announcement.content %>
+	  			</div>
+	  		</div><br>
+	  	<% end %>
+	  <% end %>
+  </div>
+
+  <hr>
 	
+	<div class="container">
+		<h3 class="row text-muted">RECENT POSTS</h3>
 
-	<h3 class="row"><%= @user.name%>'s Recent Posts</h3>
-
-	<% if @user.posts.empty? %>
-		<p>This user currently has no posts</p>
-	<% else %>
-		<% @user.posts.order(:trip_id).each do |post| %>
-			<% if post.image.exists? %>
-				<%= image_tag post.image.url, :class => 'img-responsive img-size' %>
+		<% if @user.posts.empty? %>
+			<p>This user currently has no posts</p>
+		<% else %>
+			<% @user.posts.order(:trip_id).each do |post| %>
+				<div class="panel panel-info">
+				  <div class="panel-heading">
+				  	<div class="panel-title pull-left">Trip: <strong><%= post.trip.place %></strong></div>
+						<div class="panel-title pull-right"><%= post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
+					</div>
+					<div class="panel-body">
+						<% if post.image.exists? %>
+							<div class="pull-left col-md-4">
+								<%= image_tag post.image.url, :class => 'img-responsive img-size-post' %>
+							</div>
+							<div class="post-content pull-right col-md-8">
+								<%= post.content %>
+							</div>
+						<% else %>
+							<%= post.content %>
+						<% end %>
+					</div>
+				  <div class="panel-footer">
+						<span> <%= post.likes.count %> likes </span>&nbsp;&nbsp;&nbsp;
+				  	<% if current_user.like?(post.id) %>
+							<%= link_to "", unlike_path(post), class: "glyphicon glyphicon-thumbs-down" %>  
+						<% else %>
+							<%= link_to "", like_path(post), class: "glyphicon glyphicon-thumbs-up" %>  
+						<% end %>
+				  </div>
+			  </div><br>
 			<% end %>
-			<div class="panel panel-info">
-			  <div class="panel-heading">
-			  	<div class="panel-title pull-left"><strong>Trip: <%= post.trip.place %></strong></div>
-					<div class="panel-title pull-right"><%= post.updated_at.localtime.strftime('%d %b %Y at %l:%M:%S')%></div>
-				</div>
-				<div class="panel-body">
-				<%= post.content %>
-				</div>
-			</div>
-		<% end %>
-	<% end %><br>
-
-
-
+		<% end %><br>
+	</div>
 		
 
 </div>

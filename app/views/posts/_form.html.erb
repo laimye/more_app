@@ -18,16 +18,16 @@
         <strong>CONTENT</strong>
       </div>
         <%= f.text_area :content, size:"5x5", :class => "form-control", :required => true %>
-      </div>
+      </div><br>
 
-      <div class="field">
-      <%= f.file_field :image %><br><br>
+      <div class="field input-image">
+      <%= f.file_field :image %><br>
     </div>
 
     <% if @post.id %>
       <div class="actions"><%= f.submit  "Update Post", class: "btn btn-default"%></div>
     <% else %>
-      <div class="actions"><%= f.submit  "Add Post", class: "btn btn-default"%></div>
+      <div class="actions links-on-bottom"><%= f.submit  "Add Post", class: "btn btn-info"%></div>
     <% end %><br>
 
 
