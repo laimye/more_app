@@ -19,40 +19,40 @@ User.destroy_all
 ])
 
 # Create Trips
-@trips = Trip.create([
-	{place: "Spain", startdate: "09/03/2017", enddate: "09/10/2017", about: "A trip to Spain.", user_id: User.first.id},
-	{place: "Bora Bora", startdate: "04/03/2017", enddate: "04/10/2017", about: "A trip to French Polynesia.", user_id: @users[1].id},
-	{place: "Saint Petersburg", startdate: "10/03/2017", enddate: "10/10/2017", about: "A trip to Russia.", user_id: User.first.id}
-])
+# @trips = Trip.create([
+# 	{place: "Spain", startdate: "09/03/2017", enddate: "09/10/2017", about: "A trip to Spain.", user_id: User.first.id},
+# 	{place: "Bora Bora", startdate: "04/03/2017", enddate: "04/10/2017", about: "A trip to French Polynesia.", user_id: @users[1].id},
+# 	{place: "Saint Petersburg", startdate: "10/03/2017", enddate: "10/10/2017", about: "A trip to Russia.", user_id: User.first.id}
+# ])
 
-# Create Invites
+# # Create Invites
 
-Invite.create(user: @users[0], trip: Trip.first)
-Invite.create(user: @users[1], trip: Trip.first)
-Invite.create(user: @users[2], trip: Trip.first)
-Invite.create(user: @users[0], trip: @trips[1])
-Invite.create(user: @users[1], trip: @trips[1])
-Invite.create(user: @users[0], trip: @trips[2])
+# Invite.create(user: @users[0], trip: Trip.first)
+# Invite.create(user: @users[1], trip: Trip.first)
+# Invite.create(user: @users[2], trip: Trip.first)
+# Invite.create(user: @users[0], trip: @trips[1])
+# Invite.create(user: @users[1], trip: @trips[1])
+# Invite.create(user: @users[0], trip: @trips[2])
 
-#Create Posts
+# #Create Posts
 
-@posts = Post.create([
-	{user: @users[0], trip: @trips[0], content: "Hello World"},
-	{user: @users[0], trip: @trips[1], content: "I am excited to go"},
-	{user: @users[1], trip: @trips[1], content: "Who else is going?"}
-])
+# @posts = Post.create([
+# 	{user: @users[0], trip: @trips[0], content: "Hello World"},
+# 	{user: @users[0], trip: @trips[1], content: "I am excited to go"},
+# 	{user: @users[1], trip: @trips[1], content: "Who else is going?"}
+# ])
 
-Post.first.comments.create([
-	{content: "A lot of people", user: @users[0]},
-	{content: "We all are going", user: @users[1]}
-])
+# Post.first.comments.create([
+# 	{content: "A lot of people", user: @users[0]},
+# 	{content: "We all are going", user: @users[1]}
+# ])
 
-# Create Announcements
+# # Create Announcements
 
-@announcements = Announcement.create([
-	{user: @users[0], trip: @trips[0], content: "Achtung! Attention!"},
-	{user: @users[1], trip: @trips[0], content: "We leave at 8am. Don't miss the boat!"}
-])
+# @announcements = Announcement.create([
+# 	{user: @users[0], trip: @trips[0], content: "Achtung! Attention!"},
+# 	{user: @users[1], trip: @trips[0], content: "We leave at 8am. Don't miss the boat!"}
+# ])
 
 
 
