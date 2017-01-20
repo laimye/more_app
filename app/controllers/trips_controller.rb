@@ -31,6 +31,9 @@ class TripsController < ApplicationController
   end
 
   def edit
+    unless current_user == @trip.user
+      redirect_to root_path, notice: 'You are not authorized to edit this trip!'
+    end
   end
 
   def update
@@ -42,7 +45,10 @@ class TripsController < ApplicationController
 	end
 
 	def destroy
-		@trip.destroy
+    unless current_user == @trip.user
+      redirect_to :back, notice: 'You are not authorized to delete this trip!'
+    end
+		@trip.destroy if @trip.user == current_user
 		redirect_to root_path, notice: 'Your trip was succesfully deleted!'
 	end
 
@@ -59,5 +65,5 @@ class TripsController < ApplicationController
 	def trip_params
 		params.require(:trip).permit(:place, :startdate, :enddate, :about, :image)
 	end
-  
+
 end

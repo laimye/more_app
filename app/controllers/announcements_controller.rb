@@ -11,10 +11,12 @@ before_action :set_announcement, only: [:show, :edit, :update, :destroy]
 		end
 
 		def show
-			@announcement = Announcement.new
 		end
 
 		def edit
+			unless current_user == @announcement.user
+			  redirect_to :back, notice: 'You are not authorized to edit this announcement!'
+			end
 		end
 
 		def new
@@ -42,7 +44,10 @@ before_action :set_announcement, only: [:show, :edit, :update, :destroy]
 		end
 
 		def destroy
-			@announcement.destroy
+			unless current_user == @announcement.user
+			  redirect_to :back, notice: 'You are not authorized to delete this announcement!'
+			end
+			@announcement.destroy if @announcement.user == current_user
 			redirect_to @announcement.trip, notice: 'Your announcement was succesfully deleted!'
 		end
 

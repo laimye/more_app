@@ -9,6 +9,9 @@ class CommentsController < ApplicationController
 	end
 
 	def edit
+		unless current_user == @comment.user
+		  redirect_to :back, notice: 'You are not authorized to edit this comment!'
+		end
 	end
 
 	def new
@@ -35,7 +38,10 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-		@comment.destroy
+		unless current_user == @comment.user
+		  redirect_to :back, notice: 'You are not authorized to delete this comment!'
+		end
+		@comment.destroy if @comment.user == current_user
 		redirect_to :back, notice: 'Your comment was succesfully deleted!'
 	end
 

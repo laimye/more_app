@@ -9,9 +9,14 @@
   <div class="panel-body">
     <%= @announcement.content %>
   </div>
-  
-<%= link_to "Edit", edit_announcement_path(@announcement) %>  | 
-<%= link_to "Delete", announcement_path, method: :delete, data: { confirm: "Are you sure you want to delete this announcement?"} %>
+		<% if @announcement.user == current_user %>
+	  	<div class="panel-footer">
+				<div class="panel-bottom pull-right"> 
+					<%= link_to "", edit_announcement_path(@announcement), class: "glyphicon glyphicon-pencil" %>&nbsp;  | &nbsp;
+					<%= link_to "", announcement_path, class: "glyphicon glyphicon-trash", method: :delete, data: { confirm: "Are you sure you want to delete this post?"} %>
+			  </div>
+			</div><br>
+  	<% end %>
 
 </div>
 

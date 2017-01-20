@@ -11,6 +11,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    trips = current_user.trips
+    invited = current_user.invited_trips
+    trips = trips.to_a + invited.to_a
+    trips = trips.map { |t| t.id }
+    trips = trips.uniq
+    @trips = Trip.where("id IN (?)", trips)
   end
 
   def edit

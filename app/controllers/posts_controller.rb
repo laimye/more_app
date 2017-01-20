@@ -15,6 +15,9 @@ class PostsController < ApplicationController
 	end
 
 	def edit
+		unless current_user == @post.user
+		  redirect_to :back, notice: 'You are not authorized to edit this post!'
+		end
 	end
 
 	def new
@@ -42,7 +45,10 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
-		@post.destroy
+		unless current_user == @post.user
+		  redirect_to :back, notice: 'You are not authorized to delete this post!'
+		end
+		@post.destroy if @post.user == current_user
 		redirect_to @post.trip, notice: 'Your post was succesfully deleted!'
 	end
 
