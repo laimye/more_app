@@ -12,8 +12,8 @@ TECHNOLOGIES USED
 - Rails
 - Heroku
 - Paperclip
-- HTML
-- CSS
+- HTML5
+- CSS3
 - Bootstrap
 
 GETTING STARTED
