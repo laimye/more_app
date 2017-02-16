@@ -2,7 +2,7 @@ MORE TRAVEL
 
 DESCRIPTION
 
-MORE travel is a travel application for for those who like to sail around the world. Using this application, users can exchange photos, chat, and view importannt announcements from organizers of the trip. It also allows you to view the list of people who are going to the trip with you, view their profile. 
+MORE TRAVEL is a travel application for those who like to sail around the world. Using this application, users can exchange photos, chat, and view importannt announcements from organizers of the trip. It also allows you to view the list of people who are going to the trip with you, view their profile. 
 
 <a href="http://imgur.com/56ybi2e"><img src="http://i.imgur.com/56ybi2e.png" title="source: imgur.com" /></a>
 
